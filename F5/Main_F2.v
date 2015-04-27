@@ -7,7 +7,6 @@
 
 module Main_F2 (input wire sysclk,
 input wire [3:0] Enable_SW,
-input wire reset,
 input wire Bt_Plus,
 input wire Bt_Minus,
 output wire Pulse);

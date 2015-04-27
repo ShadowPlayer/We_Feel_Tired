@@ -5,7 +5,6 @@ module Main_F3 (input wire sysclk,
 input wire Bt_Next,
 input wire Bt_Pre,
 input wire Bt_Auto,
-input wire reset, 
 output wire Pulse_X,
 output wire Pulse_Y);
 

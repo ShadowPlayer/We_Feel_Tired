@@ -17,13 +17,14 @@ reg [8:0] Reset_Addr;
 reg [11:0] count_12bit = 0; // 256
 reg [7:0] Addr = 8'b0; //Storage address 
 
-/*initial begin
+initial begin
 	for (Reset_Addr = 0; Reset_Addr < 9'd256; Reset_Addr = 
 		Reset_Addr + 1'b1)begin
-			RAM_X[Reset_Addr] = 6'd32;
-			RAM_Y[Reset_Addr] = 6'd32;
+			RAM_X[Reset_Addr] = 0;
+			RAM_Y[Reset_Addr] = 0;
 	end
-end*/
+end
+
 assign DC_X = RAM_X[Reading_Count];
 assign DC_Y = RAM_Y[Reading_Count];
 
@@ -41,9 +42,11 @@ always @(posedge sysclk) begin
 		end
 	end else begin 
 		if (Storage_Sw) begin
-			if (Bt_Up) begin
-	 			Addr <= (Addr + 1'b1);
 				RAM_X[Addr] <= Duty_X;
+				RAM_Y[Addr] <= Duty_Y;
+			if (Bt_Up||Bt_Down||Bt_Left||Bt_Right)// begin
+	 			Addr <= (Addr + 1'b1);
+			/*	RAM_X[Addr] <= Duty_X;
 				RAM_Y[Addr] <= Duty_Y;
 			end 
 			if (Bt_Down) begin
@@ -60,7 +63,7 @@ always @(posedge sysclk) begin
 	 			Addr <= (Addr + 1'b1);
 				RAM_X[Addr] <= Duty_X;
 				RAM_Y[Addr] <= Duty_Y;
-			end 
+			end */
 		end
 	end
 end
