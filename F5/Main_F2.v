@@ -9,13 +9,14 @@ module Main_F2 (input wire sysclk,
 input wire [3:0] Enable_SW,
 input wire Bt_Plus,
 input wire Bt_Minus,
+input wire Enable_F2,
 output wire Pulse);
 
 //Frequency_Adj output, Waveforms' input
 wire [5:0] Scale;
 
 //Frequency Adjustment
-Frequency_Adj Fq_Adj (.sysclk(sysclk),.Plus(Bt_Plus),.Minus(Bt_Minus),
+Frequency_Adj Fq_Adj (.sysclk(sysclk),.Plus(Bt_Plus&Enable_F2),.Minus(Bt_Minus&Enable_F2),
 .Scale(Scale));
 //Waveforms Generator.
 

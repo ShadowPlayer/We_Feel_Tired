@@ -15,6 +15,18 @@ wire [5:0] Duty_Output_Tri;
 wire [5:0] Duty_Output_Saw;
 wire [5:0] Duty_Output_Square;
 reg [5:0] Duty_Sum;
+	
+Sinewave_Generator Slow_Sine(.sysclk(sysclk),.Enable_SW_0(Enable_SW[0]),
+.Duty_Output(Duty_Output_Sine),.Scale(Scale));
+
+Sawwave_Generator Slow_Saw(.sysclk(sysclk),.Enable_SW_1(Enable_SW[1]),
+.Duty_Output(Duty_Output_Saw),.Scale(Scale));
+
+Triwave_Generator Slow_Tri(.sysclk(sysclk),.Enable_SW_2(Enable_SW[2]),
+.Duty_Output(Duty_Output_Tri),.Scale(Scale));
+
+Squarewave_Generator Slow_Square(.sysclk(sysclk),.Enable_SW_3(Enable_SW[3]),
+.Duty_Output(Duty_Output_Square),.Scale(Scale));
 
 assign Pulse =(count < Duty_Sum);
 
@@ -34,20 +46,7 @@ always @(*)begin
 			Duty_Sum = (Duty_Output_Sine + Duty_Output_Saw + Duty_Output_Square + Duty_Output_Tri)/4;	
 		else 
 			Duty_Sum = (Duty_Output_Sine + Duty_Output_Saw + Duty_Output_Square + Duty_Output_Tri);
-	end	
 end
-	
-Sinewave_Generator Slow_Sine(.sysclk(sysclk),.Enable_SW_0(Enable_SW[0]),
-.Duty_Output(Duty_Output_Sine),.Scale(Scale));
-
-Sawwave_Generator Slow_Saw(.sysclk(sysclk),.Enable_SW_1(Enable_SW[1]),
-.Duty_Output(Duty_Output_Saw),.Scale(Scale));
-
-Triwave_Generator Slow_Tri(.sysclk(sysclk),.Enable_SW_2(Enable_SW[2]),
-.Duty_Output(Duty_Output_Tri),.Scale(Scale));
-
-Squarewave_Generator Slow_Square(.sysclk(sysclk),.Enable_SW_3(Enable_SW[3]),
-.Duty_Output(Duty_Output_Square),.Scale(Scale));
 
 
 

@@ -5,7 +5,7 @@ input wire Bt_Auto,
 output reg [3:0] Enable_SW);
 
 reg [1:0] Address = 0;
-reg [27:0] count=0; // defining the time gap between two plot switching
+reg [26:0] count=0; // defining the time gap between two plot switching
 reg Is_Auto = 1'b0;// The Boolean that shows the state of Auto play. 
 
 always @(posedge sysclk) begin

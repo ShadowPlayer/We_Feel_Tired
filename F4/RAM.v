@@ -40,6 +40,7 @@ always @(posedge sysclk) begin
 			RAM_X[Reset_Addr] <= 1'b0;
 			RAM_Y[Reset_Addr] <= 1'b0;
 		end
+		Addr<=8'b0;
 	end else begin 
 		if (Storage_Sw) begin
 				RAM_X[Addr] <= Duty_X;
